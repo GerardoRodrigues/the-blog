@@ -8,8 +8,10 @@ interface PostHeadingProps {
 
 export function PostHeading({ children, url, as: Tag }: PostHeadingProps) {
   return (
-    <Tag className="text-2xl/tight font-extrabold sm:text-4xl/tight">
-      <Link href={url}>{children}</Link>
+    <Tag
+      className={`${Tag === "h1" ? "text-2xl/tight font-extrabold sm:text-4xl/tight" : "text-2xl/tight sm:font-bold"}`}
+    >
+      <Link className="hover:text-slate-600" href={url}>{children}</Link>
     </Tag>
   );
 }
