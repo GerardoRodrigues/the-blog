@@ -1,13 +1,12 @@
-import { postRespository } from "@/repositories/post";
 import { PostCoverImage } from "../PostCoverImage/PostCoverImage";
-import { PostHeading } from "../PostHeading/PostHeading";
-import { formatDateTime, formatRelativeDate } from "@/utils/format-dateime";
+import { PostSummary } from "../PostSummary/PostSummary";
+import { findAllPublicPosts } from "@/lib/post/queries";
 
 export async function PostList() {
-  const posts = await postRespository.findAll();
+  const posts = await findAllPublicPosts();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => {
+      {posts.slice(1).map((post) => {
         const postLink = post.coverImageUrl;
         return (
           <div className="flex flex-col gap-4 group" key={post.id}>
@@ -17,19 +16,13 @@ export async function PostList() {
               src={post.coverImageUrl}
             />
 
-            <div className="flex flex-col gap-4 sm:justify-center">
-              <time
-                className="text-slate-600 block text-sm"
-                dateTime={post.createdAt}
-                title={formatRelativeDate(post.createdAt)}
-              >
-                {formatDateTime(post.createdAt)}
-              </time>
-              <PostHeading as="h2" url={postLink}>
-                {post.title}
-              </PostHeading>
-              <p>{post.excerpt}</p>
-            </div>
+            <PostSummary
+              createdAt={post.createdAt}
+              excerpt={post.excerpt}
+              postHeading="h2"
+              postLink={postLink}
+              title={post.title}
+            />
           </div>
         );
       })}
