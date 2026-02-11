@@ -5,7 +5,7 @@ import { findAllPublicPosts } from "@/lib/post/queries";
 export async function PostList() {
   const posts = await findAllPublicPosts();
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 mb-16 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.slice(1).map((post) => {
         const postLink = post.coverImageUrl;
         return (
