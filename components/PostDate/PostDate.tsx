@@ -1,4 +1,4 @@
-import { formatDateTime, formatRelativeDate } from "@/utils/format-dateime";
+import { formatDateTime, formatRelativeDate } from "@/utils/format-datetime";
 
 interface PostDateProps {
   date: string;
