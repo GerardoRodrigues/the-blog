@@ -5,10 +5,12 @@ import { PostDate } from "../PostDate/PostDate";
 import { SafeMarkdown } from "../SafeMarkdown/SafeMarkdown";
 
 interface SinglePostProps {
-  slug: string;
+  params: Promise<{ slug: string }>;
 }
 
-export async function SinglePost({ slug }: SinglePostProps) {
+export async function SinglePost({ params }: SinglePostProps) {
+  const { slug } = await params;
+
   const post = await findPostBySlugCached(slug);
   return (
     <article className="mb-16">
