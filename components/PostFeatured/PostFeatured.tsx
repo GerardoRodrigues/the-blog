@@ -1,5 +1,5 @@
 import { PostCoverImage } from "../PostCoverImage/PostCoverImage";
-import { findAllPublicPostsCached } from "@/lib/post/queries";
+import { findAllPublicPostsCached } from "@/lib/post/queries/public";
 import { PostSummary } from "../PostSummary/PostSummary";
 
 export async function PostFeatured() {
