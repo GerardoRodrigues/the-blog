@@ -1,9 +1,16 @@
 import { PostCoverImage } from "../PostCoverImage/PostCoverImage";
 import { findAllPublicPostsCached } from "@/lib/post/queries/public";
 import { PostSummary } from "../PostSummary/PostSummary";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
 export async function PostFeatured() {
   const posts = await findAllPublicPostsCached();
+
+  if (posts.length <= 0)
+    return (
+      <ErrorMessage contentTitle="Ops!" content="Nenhuma postagem encontrada" />
+    );
+    
   const post = posts[0];
   const postLink = `/post/${post.slug}`;
   return (

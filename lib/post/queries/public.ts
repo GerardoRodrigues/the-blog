@@ -18,33 +18,6 @@ export async function findPublicPostBySlugCached(slug: string) {
     .catch(() => undefined);
 
   if (!post) notFound();
-  
+
   return post;
 }
-
-// export const findAllPublicPostsCached = unstable_cache(
-//   cache(async () => {
-//     return await postRespository.findAllPublic();
-//   }),
-//   ["posts"],
-//   {
-//     tags: ["posts"],
-//   },
-// );
-
-// export const findPostBySlugCached = (slug: string) =>
-//   unstable_cache(
-//     cache(async (slug: string) => {
-//       const post = await postRespository
-//         .findBySlugPublic(slug)
-//         .catch(() => undefined);
-//       if (!post) notFound();
-//       return post;
-//     }),
-//     ["posts"],
-//     {
-//       tags: [`posts-${slug}`],
-//     },
-//   )(slug);
-
-

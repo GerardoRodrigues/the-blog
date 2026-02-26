@@ -1,12 +1,9 @@
-"use cache";
-
 import { postRespository } from "@/repositories/post";
-import { cache } from "react";
 
-export const findPostByIdAdmin = cache(async (id: string) => {
+export async function findPostByIdAdmin(id: string) {
   return await postRespository.findById(id);
-});
+}
 
-export const findAllPostAdmin = cache(async () => {
+export async function findAllPostAdmin() {
   return await postRespository.findAll();
-});
+}

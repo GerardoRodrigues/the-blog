@@ -4,6 +4,8 @@ import { drizzleDb } from "@/db/drizzle";
 import { logColor } from "@/utils/log-color";
 import { asyncDelay } from "@/utils/async-delay";
 import { SIMULATE_WAIT_IN_MS } from "@/lib/consts";
+import { postsTable } from "@/db/drizzle/schemas";
+import { eq } from "drizzle-orm";
 
 export class DrizzlePostRepository implements PostRepository {
   async findAll(): Promise<PostModel[]> {
@@ -58,5 +60,12 @@ export class DrizzlePostRepository implements PostRepository {
     }
 
     return post;
+  }
+
+  async deletePostById(id: string): Promise<void> {
+    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
+    logColor("deletePostById", Date.now());
+
+    await drizzleDb.delete(postsTable).where(eq(postsTable.id, id));
   }
 }
