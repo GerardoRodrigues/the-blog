@@ -1,3 +1,5 @@
+import { Button } from "../Button/Button";
+
 interface DialogProps {
   title: string;
   content: React.ReactNode;
@@ -36,23 +38,17 @@ export function Dialog({
         </h3>
         <div id="dialog-description">{content}</div>
         <div className="flex items-center justify-around">
-          <button
+          <Button
             autoFocus
-            className="cursor-pointer bg-slate-300 hover:bg-slate-400 rounded-lg transition text-slate-950 px-4 py-2 flex items-center justify-center 
-            disabled:bg-slate-300 disabled:text-slate-100 disabled:cursor-not-allowed"
             onClick={handleCancel}
             disabled={disabled}
+            variant="ghost"
           >
             Cancelar
-          </button>
-          <button
-            className="cursor-pointer bg-blue-500 hover:bg-blue-600 rounded-lg transition text-blue-50 px-4 py-2 flex items-center justify-center 
-            disabled:bg-slate-300 disabled:text-slate-100 disabled:cursor-not-allowed"
-            onClick={onConfirm}
-            disabled={disabled}
-          >
+          </Button>
+          <Button onClick={onConfirm} disabled={disabled}>
             Sim
-          </button>
+          </Button>
         </div>
       </div>
     </div>
