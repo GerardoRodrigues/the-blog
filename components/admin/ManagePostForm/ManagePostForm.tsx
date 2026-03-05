@@ -5,6 +5,7 @@ import { InputCheckbox } from "@/components/InputCheckbox/InputCheckbox";
 import { InputText } from "@/components/InputText/InputText";
 import { MarkdownEditor } from "@/components/MarkdownEditor/MarkdownEditor";
 import { useState } from "react";
+import { ImageUploader } from "../ImageUploader/ImageUploader";
 
 export function ManagePostForm() {
   const [contentValue, setContentValue] = useState("");
@@ -24,6 +25,8 @@ export function ManagePostForm() {
           value={contentValue}
           setValue={setContentValue}
         />
+
+        <ImageUploader />
 
         <InputCheckbox labelText="Aceito os termos" />
       </div>
